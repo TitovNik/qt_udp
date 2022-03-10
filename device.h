@@ -17,21 +17,16 @@ class device : public QMainWindow
 public:
 
     device(QWidget *parent = nullptr);
-    device(QWidget *parent = nullptr, int portnum = 0, int minval = 0, int maxval = 0, QString devicename = "Empty");
+    device(QWidget *parent = nullptr, int portnum = 0, int minval = 0, int maxval = 0, QString devicename = "Empty", QString IP = "127.0.0.1");
 
     ~device();
 
-    //убрать потом как-нибудь
     std::uint16_t min;
     std::uint16_t max;
     std::uint16_t port;
     QString devicename;
 
-
-
-
-//    QString metainfo;
-//    void createmetainfo();
+    QString IP;
 
 
     void setPort(int portnum){

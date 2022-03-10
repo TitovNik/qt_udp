@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "device.h"
-#include <QSettings>
+#include <QString>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,11 +14,13 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     std::list<device*> device_list; //cписок объектов
-    QSettings *config;
+
     void write_config(std::list<device*> device_list);
+    QString IP;
 
 private slots:
     void on_pushButton_clicked();

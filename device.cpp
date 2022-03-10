@@ -13,9 +13,10 @@
 
 #define CONNECTION_LOST_DURATION 5000
 
-device::device(QWidget *parent, int portnum, int minval, int maxval,QString name):
+device::device(QWidget *parent, int portnum, int minval, int maxval,QString name, QString IP):
     QMainWindow(parent), port(portnum),  min(minval),max(maxval),
     devicename(name),
+    IP(IP),
     ui(new Ui::device)
 {
     ui->setupUi(this);
@@ -31,7 +32,7 @@ device::device(QWidget *parent, int portnum, int minval, int maxval,QString name
 
 
     sock=new QUdpSocket(this);
-    sock->bind(QHostAddress::LocalHost, port); //QHostAddress("192.168.0.99")
+    sock->bind(QHostAddress(IP), port); //QHostAddress("192.168.0.99")
     connect(sock, &QUdpSocket::readyRead,
                 this, &device::readPendingDatagrams); //подключение
 

@@ -1,8 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include <regex>
 #include <QMessageBox>
-#include <QString>
 #include <QFile>
 
 
@@ -35,8 +34,9 @@ void MainWindow::on_pushButton_clicked()
         int minval = ui->textEdit_3->toPlainText().toInt();
         int maxval = ui->textEdit_4->toPlainText().toInt();
         QString devicename = ui->textEdit_5->toPlainText();
+        QString IP = ui->textEdit_6->toPlainText();
 
-        device * window = new device(this, portnum, minval,maxval, devicename);
+        device * window = new device(this, portnum, minval,maxval, devicename, IP);
         device_list.push_back(window);
 
         window->show();
@@ -49,6 +49,7 @@ void MainWindow::on_pushButton_2_clicked() //read config
     QFile config("config.txt");
     QString line;
     config.open(QIODevice::ReadOnly | QIODevice::Text);
+
     int x=0; int j=0;
     while(!config.atEnd()){
         line = config.readLine();
